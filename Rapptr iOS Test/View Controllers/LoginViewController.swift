@@ -32,10 +32,20 @@ class LoginViewController: UIViewController {
     // MARK: - Properties
     private var client: LoginClient?
     
+    let image = "img_login"
+    
+    let backgroundImage = UIImageView()
+    let emailTextField = UITextField()
+    let passwordTextField = UITextField()
+    let loginButton = UIButton()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Login"
+        
+        configureUIElements()
+        layoutUIElements()
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,5 +60,66 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func didPressLoginButton(_ sender: Any) {
+    }
+    
+    
+    
+    func configureUIElements() {
+        
+        view.addSubview(backgroundImage)
+        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImage.image = UIImage(named: image)
+        backgroundImage.isUserInteractionEnabled = true
+        
+        
+        
+        
+        backgroundImage.addSubview(emailTextField)
+        emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        emailTextField.backgroundColor = .white
+        emailTextField.backgroundColor?.withAlphaComponent(0.5)
+        emailTextField.layer.cornerRadius = 6
+    
+    
+        
+        backgroundImage.addSubview(passwordTextField)
+        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.backgroundColor = .white
+        passwordTextField.backgroundColor?.withAlphaComponent(0.5)
+        passwordTextField.layer.cornerRadius = 6
+        
+        
+        
+
+        backgroundImage.addSubview(loginButton)
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        loginButton.backgroundColor = UIColor(named: "Rapptr_Blue")
+        loginButton.setTitle("LOGIN", for: .normal)
+    }
+    
+    func layoutUIElements() {
+        
+        NSLayoutConstraint.activate([
+            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            emailTextField.heightAnchor.constraint(equalToConstant: 55),
+            emailTextField.topAnchor.constraint(equalTo: backgroundImage.topAnchor, constant: 64),
+            emailTextField.leadingAnchor.constraint(equalTo: backgroundImage.leadingAnchor, constant: 30),
+            emailTextField.trailingAnchor.constraint(equalTo: backgroundImage.trailingAnchor, constant: -30),
+            emailTextField.bottomAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: -54),
+            
+            passwordTextField.heightAnchor.constraint(equalToConstant: 55),
+            passwordTextField.leadingAnchor.constraint(equalTo: backgroundImage.leadingAnchor, constant: 30),
+            passwordTextField.trailingAnchor.constraint(equalTo: backgroundImage.trailingAnchor, constant: -30),
+            passwordTextField.bottomAnchor.constraint(equalTo: loginButton.topAnchor, constant: -54),
+            
+            loginButton.heightAnchor.constraint(equalToConstant: 55),
+            loginButton.leadingAnchor.constraint(equalTo: backgroundImage.leadingAnchor, constant: 30),
+            loginButton.trailingAnchor.constraint(equalTo: backgroundImage.trailingAnchor, constant: -30)
+        
+        ])
     }
 }
