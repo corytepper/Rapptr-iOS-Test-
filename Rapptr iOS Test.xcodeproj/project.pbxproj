@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2F988C57294D2CB00043ABBC /* BrandColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F988C56294D2CB00043ABBC /* BrandColors.swift */; };
+		2F988C59294D43F20043ABBC /* Rapptr_Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F988C58294D43F20043ABBC /* Rapptr_Button.swift */; };
+		2F988C5B294D463C0043ABBC /* Rapptr_TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F988C5A294D463C0043ABBC /* Rapptr_TextField.swift */; };
 		E9414DB726C45CF300512A71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9414DB626C45CF300512A71 /* AppDelegate.swift */; };
 		E9414DC026C45CF400512A71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9414DBF26C45CF400512A71 /* Assets.xcassets */; };
 		E9414DC326C45CF400512A71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9414DC126C45CF400512A71 /* LaunchScreen.storyboard */; };
@@ -28,6 +30,8 @@
 
 /* Begin PBXFileReference section */
 		2F988C56294D2CB00043ABBC /* BrandColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandColors.swift; sourceTree = "<group>"; };
+		2F988C58294D43F20043ABBC /* Rapptr_Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rapptr_Button.swift; sourceTree = "<group>"; };
+		2F988C5A294D463C0043ABBC /* Rapptr_TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rapptr_TextField.swift; sourceTree = "<group>"; };
 		E9414DB326C45CF300512A71 /* Rapptr iOS Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rapptr iOS Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9414DB626C45CF300512A71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9414DBF26C45CF400512A71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 				E9414DDE26C4618900512A71 /* LoginViewController.swift */,
 				E9414DE026C4618900512A71 /* MenuViewController.swift */,
 				E9414DDC26C4618900512A71 /* MenuViewController.xib */,
+				2F988C5A294D463C0043ABBC /* Rapptr_TextField.swift */,
+				2F988C58294D43F20043ABBC /* Rapptr_Button.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -225,8 +231,10 @@
 				E9414DE126C4618900512A71 /* ChatViewController.swift in Sources */,
 				E9414DCE26C45F9200512A71 /* LoginClient.swift in Sources */,
 				2F988C57294D2CB00043ABBC /* BrandColors.swift in Sources */,
+				2F988C5B294D463C0043ABBC /* Rapptr_TextField.swift in Sources */,
 				E9414DE826C4618900512A71 /* MenuViewController.swift in Sources */,
 				E9414DCB26C45EC900512A71 /* Message.swift in Sources */,
+				2F988C59294D43F20043ABBC /* Rapptr_Button.swift in Sources */,
 				E9414DEA26C468D700512A71 /* SceneDelegate.swift in Sources */,
 				E9414DD626C4617B00512A71 /* ChatTableViewCell.swift in Sources */,
 				E9414DE226C4618900512A71 /* AnimationViewController.swift in Sources */,

@@ -35,9 +35,10 @@ class LoginViewController: UIViewController {
     let image = "img_login"
     
     let backgroundImage = UIImageView()
-    let emailTextField = UITextField()
-    let passwordTextField = UITextField()
-    let loginButton = UIButton()
+    let stackView = UIStackView()
+    let emailTextField = RapptrTextField()
+    let passwordTextField = RapptrTextField()
+    let loginButton = RapptrButton()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -67,34 +68,54 @@ class LoginViewController: UIViewController {
     func configureUIElements() {
         
         view.addSubview(backgroundImage)
+        view.addSubview(stackView)
+        
+//        stackView.addArrangedSubview(emailTextField)
+//        stackView.addArrangedSubview(passwordTextField)
+//        stackView.addArrangedSubview(loginButton)
+//
+        
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         backgroundImage.image = UIImage(named: image)
         backgroundImage.isUserInteractionEnabled = true
         
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 24
+        stackView.alignment = .center
+//        stackView.distribution = .fill
+        
+        stackView.addArrangedSubview(emailTextField)
+        stackView.addArrangedSubview(passwordTextField)
+        stackView.addArrangedSubview(loginButton)
         
         
-        
-        backgroundImage.addSubview(emailTextField)
+//        backgroundImage.addSubview(emailTextField)
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
-        emailTextField.backgroundColor = .white
-        emailTextField.backgroundColor?.withAlphaComponent(0.5)
-        emailTextField.layer.cornerRadius = 6
-    
+//        emailTextField.backgroundColor = .white
+//        emailTextField.backgroundColor?.withAlphaComponent(0.5)
+//        emailTextField.layer.cornerRadius = 6
+        emailTextField.set(backgroundColor: .white, placeholder: "Info@rapptrlabs.com")
+//        emailTextField.heightAnchor.constraint(equalToConstant: 55).isActive = true
     
         
-        backgroundImage.addSubview(passwordTextField)
+//        backgroundImage.addSubview(passwordTextField)
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextField.backgroundColor = .white
-        passwordTextField.backgroundColor?.withAlphaComponent(0.5)
-        passwordTextField.layer.cornerRadius = 6
+//        passwordTextField.backgroundColor = .white
+//        passwordTextField.backgroundColor?.withAlphaComponent(0.5)
+//        passwordTextField.layer.cornerRadius = 6
+        passwordTextField.set(backgroundColor: .red, placeholder: "password")
+//        passwordTextField.heightAnchor.constraint(equalToConstant: 55).isActive = true
         
         
         
 
-        backgroundImage.addSubview(loginButton)
+//        backgroundImage.addSubview(loginButton)
+        loginButton.set(backgroundColor: UIColor(named: "Rapptr_Blue")!, title: "LOGIN")
         loginButton.translatesAutoresizingMaskIntoConstraints = false
-        loginButton.backgroundColor = UIColor(named: "Rapptr_Blue")
-        loginButton.setTitle("LOGIN", for: .normal)
+        loginButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+//        loginButton.backgroundColor = UIColor(named: "Rapptr_Blue")
+//        loginButton.setTitle("LOGIN", for: .normal)
     }
     
     func layoutUIElements() {
@@ -105,20 +126,32 @@ class LoginViewController: UIViewController {
             backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
+//            stackView.heightAnchor.constraint(equalToConstant: 50),
+//            stackView.widthAnchor.constraint(equalToConstant: 150),
+//            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 164),
+//            stackView.bottomAnchor.constraint(equalTo: backgroundImage.bottomAnchor, constant: 10),
+//            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 64),
+//            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 100),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 30),
+           
+//
             emailTextField.heightAnchor.constraint(equalToConstant: 55),
-            emailTextField.topAnchor.constraint(equalTo: backgroundImage.topAnchor, constant: 64),
-            emailTextField.leadingAnchor.constraint(equalTo: backgroundImage.leadingAnchor, constant: 30),
-            emailTextField.trailingAnchor.constraint(equalTo: backgroundImage.trailingAnchor, constant: -30),
-            emailTextField.bottomAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: -54),
-            
+//            emailTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 64),
+            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+//            emailTextField.bottomAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: -54),
+//
             passwordTextField.heightAnchor.constraint(equalToConstant: 55),
-            passwordTextField.leadingAnchor.constraint(equalTo: backgroundImage.leadingAnchor, constant: 30),
-            passwordTextField.trailingAnchor.constraint(equalTo: backgroundImage.trailingAnchor, constant: -30),
-            passwordTextField.bottomAnchor.constraint(equalTo: loginButton.topAnchor, constant: -54),
-            
+            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+//            passwordTextField.bottomAnchor.constraint(equalTo: loginButton.topAnchor, constant: -54),
+////
             loginButton.heightAnchor.constraint(equalToConstant: 55),
-            loginButton.leadingAnchor.constraint(equalTo: backgroundImage.leadingAnchor, constant: 30),
-            loginButton.trailingAnchor.constraint(equalTo: backgroundImage.trailingAnchor, constant: -30)
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
         
         ])
     }
