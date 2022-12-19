@@ -27,6 +27,9 @@ class AnimationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Animation"
+        
+        setupNavBar(title: title ?? "")
+        
     }
     
     // MARK: - Actions

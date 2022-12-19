@@ -32,9 +32,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Chat"
+        setupNavBar(title: title ?? "")
+        
+        
         messages = [Message]()
         configureTable(tableView: chatTable)
-        title = "Chat"
+        
         
         // TODO: Remove test data when we have actual data from the server loaded
         messages?.append(Message(testName: "James", withTestMessage: "Hey Guys!"))

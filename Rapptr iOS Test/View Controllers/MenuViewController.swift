@@ -37,7 +37,7 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Coding Tasks"
-        setupNavBar()
+        setupNavBar(title: title ?? "")
     }
     
     // MARK: - Actions
@@ -56,24 +56,5 @@ class MenuViewController: UIViewController {
         navigationController?.pushViewController(animationViewController, animated: true)
     }
     
-    func setupNavBar() {
-        //        navigationController?.navigationBar.backgroundColor = UIColor(named: "Rapptr_Blue")
-        
-        
-        let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.backgroundColor = UIColor(named: "Rapptr_Blue")
-        navigationController?.navigationBar.standardAppearance = navBarAppearance
-        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-        navigationController?.navigationBar.tintColor = UIColor.white
-        navigationItem.backButtonTitle = ""
-        navigationItem.backBarButtonItem?.tintColor = .white
-        
-        
-        //        navigationController?.navigationBar.barTintColor = UIColor(named: "Rapptr_Blue")
-        //        navigationController?.navigationBar.tintColor = UIColor.white
-        //        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        //        navigationController?.navigationBar.titleTextAttributes = textAttributes
-        //        navigationItem.backBarButtonItem = UIBarButtonItem(title: "  ", style: .plain, target: nil, action: nil)
-    }
+   
 }
