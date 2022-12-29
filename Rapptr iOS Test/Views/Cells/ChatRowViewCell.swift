@@ -21,8 +21,8 @@ class ChatRowViewCell: UITableViewCell {
         vc.view.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         vc.view.backgroundColor = .clear
         
-        accessoryType = .disclosureIndicator
-        selectionStyle = .default
+//        accessoryType = .disclosureIndicator
+//        selectionStyle = .default
     }
     
     required init?(coder: NSCoder) {

@@ -22,46 +22,27 @@ final class ChatClient {
     
     static let shared =  ChatClient()
     
-    private let chatURL = ""
+    private let chatURL = "http://dev.rapptrlabs.com/Tests/scripts/chat_log.php"
     
     private init() {}
     
-    func getChat(completed: @escaping (Result<[Message], chatError>) -> Void) {
+    func getMessages() async throws -> [Message] {
         guard let url = URL(string: chatURL) else  {
-            completed(.failure(.invalidURL))
-            return
+            throw NetworkError.invalidURL
         }
         
-        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
-            guard let _ = error else {
-                completed(.failure(.unableToComplete))
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(.failure(.invalidResponse))
-                return
-            }
-            
-            guard let data = data else {
-                completed(.failure(.invalidData))
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                let decodedResponse = try decoder.decode(Message.self, from: data)
-//                completed(.success(decodedResponse.request))
-            } catch {
-                completed(.failure(.invalidData))
-            }
-        }
+        let (data, _) = try await URLSession.shared.data(from: url)
         
-        task.resume()
+        do {
+            let decoder = JSONDecoder()
+            let decodedResponse = try decoder.decode(ChatData.self, from: data)
+            return decodedResponse.data
+            
+        } catch {
+            throw NetworkError.invalidData
+        }
     }
 }
-
-    
     
         
     

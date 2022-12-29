@@ -7,21 +7,33 @@
 
 import Foundation
 
-struct Message: Decodable, Identifiable {
-    var id: Int
-    
-//    var userID: Int
+struct ChatData: Decodable {
+    let data: [Message]
+}
+
+struct Message: Decodable  {
+
+    var userID: String
     var username: String
     var avatarURL: URL?
     var text: String
     
+    enum CodingKeys: String, CodingKey {
+        case userID = "user_id"
+        case username = "name"
+        case avatarURL = "avatar_url"
+        case text = "message"
+    }
+    
     init(testName: String, withTestMessage message: String) {
-        self.id = 0
+
+        self.userID = "0"
         self.username = testName
         self.avatarURL = URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/220px-Smiley.svg.png")
         self.text = message
     }
 }
+
 
 struct MockData {
     static let sampleMessage = Message(testName: "Cory Tepper", withTestMessage: "Hire me")

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F125AD8295E42AE00C810AA /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F125AD7295E42AE00C810AA /* NetworkError.swift */; };
 		2F988C57294D2CB00043ABBC /* BrandColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F988C56294D2CB00043ABBC /* BrandColors.swift */; };
 		2F988C59294D43F20043ABBC /* Rapptr_Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F988C58294D43F20043ABBC /* Rapptr_Button.swift */; };
 		2F988C5B294D463C0043ABBC /* Rapptr_TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F988C5A294D463C0043ABBC /* Rapptr_TextField.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F125AD7295E42AE00C810AA /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		2F988C56294D2CB00043ABBC /* BrandColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandColors.swift; sourceTree = "<group>"; };
 		2F988C58294D43F20043ABBC /* Rapptr_Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rapptr_Button.swift; sourceTree = "<group>"; };
 		2F988C5A294D463C0043ABBC /* Rapptr_TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rapptr_TextField.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			children = (
 				E9414DCD26C45F9200512A71 /* LoginClient.swift */,
 				E9414DD026C460A600512A71 /* ChatClient.swift */,
+				2F125AD7295E42AE00C810AA /* NetworkError.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				2FD1300029510A51003A5198 /* NavBar.swift in Sources */,
 				E9414DB726C45CF300512A71 /* AppDelegate.swift in Sources */,
 				2FD13032295399A9003A5198 /* ChatRowViewCell.swift in Sources */,
+				2F125AD8295E42AE00C810AA /* NetworkError.swift in Sources */,
 				E9414DE626C4618900512A71 /* LoginViewController.swift in Sources */,
 				2FD1302429523163003A5198 /* LoginResponse.swift in Sources */,
 			);
