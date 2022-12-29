@@ -18,11 +18,51 @@ import Foundation
  *
  */
 
-class ChatClient {
+final class ChatClient {
     
-    var session: URLSession?
+    static let shared =  ChatClient()
     
-    func fetchChatData(completion: @escaping ([Message]) -> Void, error errorHandler: @escaping (String?) -> Void) {
+    private let chatURL = ""
+    
+    private init() {}
+    
+    func getChat(completed: @escaping (Result<[Message], chatError>) -> Void) {
+        guard let url = URL(string: chatURL) else  {
+            completed(.failure(.invalidURL))
+            return
+        }
         
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
+            guard let _ = error else {
+                completed(.failure(.unableToComplete))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let decodedResponse = try decoder.decode(Message.self, from: data)
+//                completed(.success(decodedResponse.request))
+            } catch {
+                completed(.failure(.invalidData))
+            }
+        }
+        
+        task.resume()
     }
 }
+
+    
+    
+        
+    
+

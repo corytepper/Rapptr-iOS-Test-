@@ -8,6 +8,9 @@ import UIKit
 
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    let tableView = UITableView()
+    
+    
     /**
      * =========================================================================================
      * INSTRUCTIONS
@@ -21,70 +24,58 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
      *
      **/
     
-    // MARK: - Properties
-    private var client: ChatClient?
-    private var messages: [Message]?
-    
-    // MARK: - Outlets
-    @IBOutlet weak var chatTable: UITableView!
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Chat"
         setupNavBar(title: title ?? "")
+        configureTable()
         
         
-        messages = [Message]()
-        configureTable(tableView: chatTable)
-        
-        
-        // TODO: Remove test data when we have actual data from the server loaded
-        messages?.append(Message(testName: "James", withTestMessage: "Hey Guys!"))
-        messages?.append(Message(testName:"Paul", withTestMessage:"What's up?"))
-        messages?.append(Message(testName:"Amy", withTestMessage:"Hey! :)"))
-        messages?.append(Message(testName:"James", withTestMessage:"Want to grab some food later?"))
-        messages?.append(Message(testName:"Paul", withTestMessage:"Sure, time and place?"))
-        messages?.append(Message(testName:"Amy", withTestMessage:"YAS! I am starving!!!"))
-        messages?.append(Message(testName:"James", withTestMessage:"1 hr at the Local Burger sound good?"))
-        messages?.append(Message(testName:"Paul", withTestMessage:"Sure thing"))
-        messages?.append(Message(testName:"Amy", withTestMessage:"See you there :P"))
-        
-        chatTable.reloadData()
+        MockData.messages.append(Message(testName: "James", withTestMessage: "Hey Guys!Hey Guys!Hey Guys!Hey Guys!Hey Guys!Hey Guys!Hey Guys!Hey Guys!Hey Guys!Hey"))
+        MockData.messages.append(Message(testName:"Paul", withTestMessage:"What's up?"))
+        MockData.messages.append(Message(testName:"Amy", withTestMessage:"Hey! :)"))
+        MockData.messages.append(Message(testName:"James", withTestMessage:"Want to grab some food later?"))
+        MockData.messages.append(Message(testName:"Paul", withTestMessage:"Sure, time and place?"))
+        MockData.messages.append(Message(testName:"Amy", withTestMessage:"YAS! I am starving!!!"))
+        MockData.messages.append(Message(testName:"James", withTestMessage:"1 hr at the Local Burger sound good?"))
+        MockData.messages.append(Message(testName:"Paul", withTestMessage:"Sure thing"))
+        MockData.messages.append(Message(testName:"Amy", withTestMessage:"See you there :P"))
+
+        tableView.reloadData()
     }
+    
     
     // MARK: - Private
-    private func configureTable(tableView: UITableView) {
+    private func configureTable() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "ChatTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatTableViewCell")
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        //        tableView.register(Chat, forCellReuseIdentifier: "ChatRowViewCell")
         tableView.tableFooterView = UIView(frame: .zero)
+        tableView.separatorColor = UIColor.clear
+        
     }
     
-    // MARK: - UITableViewDataSource
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: ChatTableViewCell? = nil
-        if cell == nil {
-            let nibs = Bundle.main.loadNibNamed("ChatTableViewCell", owner: self, options: nil)
-            cell = nibs?[0] as? ChatTableViewCell
-        }
-        cell?.setCellData(message: messages![indexPath.row])
-        return cell!
-    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages!.count
+        return MockData.messages.count
     }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = ChatRowViewCell(message: MockData.messages[indexPath.row])
+        cell.accessoryType = UITableViewCell.AccessoryType.none
+        return cell
+    }
+   
+
+
+
     
-    // MARK: - UITableViewDelegate
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 58.0
-    }
-    
-    // MARK: - IBAction
-    @IBAction func backAction(_ sender: Any) {
-        let mainMenuViewController = MenuViewController()
-        self.navigationController?.pushViewController(mainMenuViewController, animated: true)
-    }
-}
+

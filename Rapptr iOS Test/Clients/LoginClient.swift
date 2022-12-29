@@ -26,8 +26,79 @@ import Foundation
 class LoginClient {
     
     var session: URLSession?
+    let startTime = NSDate.timeIntervalSinceReferenceDate
+    
+    func getPostString(params:[String:Any]) -> String
+    {
+        var data = [String]()
+        for(key, value) in params
+        {
+            data.append(key + "=\(value)")
+        }
+        return data.map { String($0) }.joined(separator: "&")
+    }
     
     func login(email: String, password: String, completion: @escaping (String) -> Void, error errorHandler: @escaping (String?) -> Void) {
         
+        let parameters = getPostString(params: ["email":email, "password":password])
+        let urlString = "http://dev.rapptrlabs.com/Tests/scripts/login.php"
+        let requestURL = URL(string: urlString)!
+        var requestHeader = URLRequest.init(url: requestURL)
+        
+        requestHeader.httpBody = parameters.data(using: .utf8, allowLossyConversion: false)
+        requestHeader.httpMethod = "POST"
+        
+        session = URLSession.shared
+        session?.dataTask(with: requestHeader, completionHandler: { data, response, error in
+            
+            do {
+                
+                
+                if let httpResponse = response as? HTTPURLResponse {
+                    if let decodedData = try JSONDecoder().decode(LoginResponse?.self, from: data!) {
+                        
+                        
+                        if httpResponse.statusCode == 200 {
+                            
+                            let responseTime = NSDate.timeIntervalSinceReferenceDate - self.startTime
+                            let milliseconds = Int((responseTime * 1000).truncatingRemainder(dividingBy: 1000))
+                            DispatchQueue.main.async {
+                                let successMessage = decodedData.message
+                                let completionMessage = successMessage + "\nRequest completed in " + String(milliseconds) + " ms."
+                                completion(completionMessage)
+                            }
+                        } else{
+                            DispatchQueue.main.async {
+                                errorHandler(decodedData.message)
+                            }
+                            
+                            
+                        }
+                        
+                        
+                    }
+                }
+                
+                
+            }
+            
+            catch {
+                
+                
+            }
+            
+        }).resume()
+        
+        
+        
+        
+        
+        
+        
     }
+    
+    
+    
+    
 }
+

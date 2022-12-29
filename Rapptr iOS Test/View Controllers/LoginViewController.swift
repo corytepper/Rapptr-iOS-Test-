@@ -40,6 +40,8 @@ class LoginViewController: UIViewController {
     let passwordTextField = RapptrTextField()
     let loginButton = RapptrButton()
     
+    
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +50,9 @@ class LoginViewController: UIViewController {
         setupNavBar(title: title ?? "")
         configureUIElements()
         layoutUIElements()
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,19 +61,63 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func backAction(_ sender: Any) {
-        let mainMenuViewController = MenuViewController()
-        self.navigationController?.pushViewController(mainMenuViewController, animated: true)
+//    @IBAction func backAction(_ sender: Any) {
+//        let mainMenuViewController = MenuViewController()
+//        self.navigationController?.pushViewController(mainMenuViewController, animated: true)
+//    }
+    
+//    @IBAction func didPressLoginButton(_ sender: Any) {
+//    }
+    
+    @objc private func loginButtonTapped(sender: UIButton) {
+        print("loginButtontapped")
+        
+        guard let email = emailTextField.text else {
+            return }
+        guard let password = passwordTextField.text else {
+            return }
+        
+        client?.login(email: email, password: password, completion: { responseTime in
+            self.displayAlert(withResponseTime: responseTime, withError: nil)
+            
+        }, error: { error in
+            self.displayAlert(withResponseTime: nil, withError: error)
+            
+        })
+        
     }
     
-    @IBAction func didPressLoginButton(_ sender: Any) {
+    func displayAlert(withResponseTime: String?, withError: String?) {
+        
+        if let responseTime = withResponseTime {
+            let alert = UIAlertController(title: "Success", message: responseTime, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Okay", style: .default) { action in
+                //pop the current (login) controller to go back to menu controller
+                self.navigationController?.popViewController(animated: true)
+                
+            }
+            alert.addAction(alertAction)
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        
+        
+        if let error = withError {
+            
+            let alert = UIAlertController(title: "Unsuccessful", message: "Login was unsuccessful.\n" + error, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Okay", style: .default) { action in
+                
+                self.dismiss(animated: true, completion: nil)
+                
+            }
+            alert.addAction(alertAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        
     }
-    
-    
     
     func configureUIElements() {
-        
-        
         
         view.addSubview(backgroundImage)
         view.addSubview(stackView)
@@ -95,6 +144,8 @@ class LoginViewController: UIViewController {
 
         loginButton.set(backgroundColor: UIColor(named: "Rapptr_Blue")!, title: "LOGIN")
         loginButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
     }
     
     func layoutUIElements() {
@@ -122,5 +173,30 @@ class LoginViewController: UIViewController {
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
         ])
+    }
+}
+
+extension LoginViewController : UITextFieldDelegate {
+    
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.emailTextField {
+            textField.resignFirstResponder()
+            return false
+            
+        }
+        
+        if textField == self.passwordTextField {
+            textField.resignFirstResponder()
+            return false
+        }
+        
+        return true
+        
+        
     }
 }
