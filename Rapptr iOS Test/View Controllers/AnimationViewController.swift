@@ -81,7 +81,6 @@ class AnimationViewController: UIViewController {
         fadeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
         fadeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
         
-        
         partyButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         partyButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 271).isActive  = true
         
@@ -91,12 +90,29 @@ class AnimationViewController: UIViewController {
     }
     
     @objc func fadeButtonTapped() {
-        print( "fade button tapped")
+        let imageBool = logo.alpha == 0
+        imageBool ? logo.fadeIn() : logo.fadeOut()
+        imageBool ? fadeButton.setTitle("FADE OUT", for: .normal) : fadeButton.setTitle("FADE IN", for: .normal)
         
     }
     
     @objc func partyButtonTapped() {
         print( "party button tapped")
         
+    }
+}
+
+
+public extension UIView {
+    func fadeIn(duration: TimeInterval = 1.0) {
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 1.0
+        })
+    }
+
+    func fadeOut(duration: TimeInterval = 1.0) {
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 0.0
+        })
     }
 }
