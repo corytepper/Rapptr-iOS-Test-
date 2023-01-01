@@ -25,6 +25,7 @@ class AnimationViewController: UIViewController {
     
     let image = "ic_logo"
     let logo = UIImageView()
+    let fadeButton = RapptrButton()
     let partyButton = RapptrButton()
     
     // MARK: - Lifecycle
@@ -53,25 +54,36 @@ class AnimationViewController: UIViewController {
         
         view.backgroundColor = UIColor(named: "UIView_BG")
         view.addSubview(logo)
+        view.addSubview(fadeButton)
         view.addSubview(partyButton)
         
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.image = UIImage(named: image)
         logo.isUserInteractionEnabled = true
         
+        fadeButton.set(backgroundColor: UIColor(named: "Rapptr_Blue")!, title: "FADE IN")
+        fadeButton.translatesAutoresizingMaskIntoConstraints = false
+        fadeButton.addTarget(self, action: #selector(fadeButtonTapped), for: .touchUpInside)
         
         partyButton.set(backgroundColor: UIColor(named: "Rapptr_Blue")!, title: "PARTY")
         partyButton.translatesAutoresizingMaskIntoConstraints = false
-        partyButton.addTarget(self, action: #selector(fadeButtonTapped), for: .touchUpInside)
+        partyButton.addTarget(self, action: #selector(partyButtonTapped), for: .touchUpInside)
     }
     
     func layoutUIElements() {
         logo.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100).isActive = true
         logo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
+        fadeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        fadeButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 350).isActive  = true
+        
+        fadeButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        fadeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+        fadeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+        
         
         partyButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        partyButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive  = true
+        partyButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 271).isActive  = true
         
         partyButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
         partyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
@@ -80,6 +92,11 @@ class AnimationViewController: UIViewController {
     
     @objc func fadeButtonTapped() {
         print( "fade button tapped")
+        
+    }
+    
+    @objc func partyButtonTapped() {
+        print( "party button tapped")
         
     }
 }
