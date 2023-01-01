@@ -35,9 +35,20 @@ class AnimationViewController: UIViewController {
         setupNavBar(title: title ?? "")
         configureUIElements()
         layoutUIElements()
+        
+        let tapGR = UIPanGestureRecognizer(target: self, action: #selector(self.dragImg(_:)))
+        logo.addGestureRecognizer(tapGR)
+        logo.isUserInteractionEnabled = true
     }
     
-   
+    
+    @objc func dragImg(_ sender:UIPanGestureRecognizer){
+            let translation = sender.translation(in: self.view)
+            logo.center = CGPoint(x: logo.center.x + translation.x, y: logo.center.y + translation.y)
+            sender.setTranslation(CGPoint.zero, in: self.view)
+        }
+    
+    
     func configureUIElements() {
         
         view.backgroundColor = UIColor(named: "UIView_BG")
