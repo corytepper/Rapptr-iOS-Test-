@@ -41,7 +41,7 @@ class LoginClient {
     func login(email: String, password: String, completion: @escaping (String) -> Void, error errorHandler: @escaping (String?) -> Void) {
         
         let parameters = getPostString(params: ["email":email, "password":password])
-        let urlString = "http://dev.rapptrlabs.com/Tests/scripts/login.php"
+        let urlString = "c"
         let requestURL = URL(string: urlString)!
         var requestHeader = URLRequest.init(url: requestURL)
         
