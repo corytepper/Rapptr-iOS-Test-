@@ -11,6 +11,7 @@
 		2F5058E2296260AA00995867 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5058E1296260AA00995867 /* AlertViewController.swift */; };
 		2F5058E42962619E00995867 /* Rapptr_AlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5058E32962619E00995867 /* Rapptr_AlertContainerView.swift */; };
 		2F5058E6296265A500995867 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5058E5296265A500995867 /* UIViewController+Ext.swift */; };
+		2F5058E829649E7F00995867 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5058E729649E7F00995867 /* UIView+Ext.swift */; };
 		2F988C57294D2CB00043ABBC /* BrandColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F988C56294D2CB00043ABBC /* BrandColors.swift */; };
 		2F988C59294D43F20043ABBC /* Rapptr_Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F988C58294D43F20043ABBC /* Rapptr_Button.swift */; };
 		2F988C5B294D463C0043ABBC /* Rapptr_TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F988C5A294D463C0043ABBC /* Rapptr_TextField.swift */; };
@@ -38,6 +39,7 @@
 		2F5058E1296260AA00995867 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		2F5058E32962619E00995867 /* Rapptr_AlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rapptr_AlertContainerView.swift; sourceTree = "<group>"; };
 		2F5058E5296265A500995867 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		2F5058E729649E7F00995867 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		2F988C56294D2CB00043ABBC /* BrandColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandColors.swift; sourceTree = "<group>"; };
 		2F988C58294D43F20043ABBC /* Rapptr_Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rapptr_Button.swift; sourceTree = "<group>"; };
 		2F988C5A294D463C0043ABBC /* Rapptr_TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rapptr_TextField.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			children = (
 				E9414DCD26C45F9200512A71 /* LoginClient.swift */,
 				2F5058E1296260AA00995867 /* AlertViewController.swift */,
+				2F5058E729649E7F00995867 /* UIView+Ext.swift */,
 				2F5058E5296265A500995867 /* UIViewController+Ext.swift */,
 				2F5058E32962619E00995867 /* Rapptr_AlertContainerView.swift */,
 				E9414DD026C460A600512A71 /* ChatClient.swift */,
@@ -251,6 +254,7 @@
 				E9414DE826C4618900512A71 /* MenuViewController.swift in Sources */,
 				E9414DCB26C45EC900512A71 /* Message.swift in Sources */,
 				2FD1302E29539450003A5198 /* ChatRowView.swift in Sources */,
+				2F5058E829649E7F00995867 /* UIView+Ext.swift in Sources */,
 				2F988C59294D43F20043ABBC /* Rapptr_Button.swift in Sources */,
 				E9414DEA26C468D700512A71 /* SceneDelegate.swift in Sources */,
 				E9414DE226C4618900512A71 /* AnimationViewController.swift in Sources */,

@@ -37,15 +37,14 @@ class Rapptr_AlertVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
-        view.addSubview(containerView)
-        view.addSubview(titleLabel)
-        view.addSubview(actionButton)
-        view.addSubview(messageLabel)
+        view.addSubviews(containerView,titleLabel,actionButton,messageLabel)
         
         configureContainerView()
         configureTitleLabel()
         configureActionButton()
         configureMessageLabel()
+        
+        
     }
     
     
@@ -61,6 +60,13 @@ class Rapptr_AlertVC: UIViewController {
     
     func configureTitleLabel() {
         titleLabel.text = alertTitle ?? "Something went wrong"
+        
+        titleLabel.textColor                 = .label
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.minimumScaleFactor        = 0.9
+        titleLabel.lineBreakMode             = .byTruncatingTail
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding),
@@ -87,6 +93,15 @@ class Rapptr_AlertVC: UIViewController {
     func configureMessageLabel() {
         messageLabel.text           = message ?? "Unable to complete request"
         messageLabel.numberOfLines  = 4
+        
+        messageLabel.textColor                         = .secondaryLabel
+        messageLabel.font                              = UIFont.preferredFont(forTextStyle: .body)
+        messageLabel.adjustsFontForContentSizeCategory = true
+        messageLabel.adjustsFontSizeToFitWidth         = true
+        messageLabel.minimumScaleFactor                = 0.75
+        messageLabel.lineBreakMode                     = .byWordWrapping
+
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),

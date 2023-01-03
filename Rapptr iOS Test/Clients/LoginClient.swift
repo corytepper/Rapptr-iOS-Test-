@@ -5,7 +5,7 @@
 //  Created by Ethan Humphrey on 8/11/21.
 //
 
-import Foundation
+import UIKit
 
 /**
  * =========================================================================================
@@ -21,9 +21,13 @@ import Foundation
  * 4) email - info@rapptrlabs.com
  *   password - Test123
  *
-*/
+ */
+
+// Query string to use (Keeps returning 'invalid parameters' for some reason)
+// http://dev.rapptrlabs.com/Tests/scripts/login.php?email=info@rapptrlabs.com&password=Test123
 
 class LoginClient {
+    static let shared = LoginClient()
     
     var session: URLSession?
     let startTime = NSDate.timeIntervalSinceReferenceDate
@@ -41,7 +45,7 @@ class LoginClient {
     func login(email: String, password: String, completion: @escaping (String) -> Void, error errorHandler: @escaping (String?) -> Void) {
         
         let parameters = getPostString(params: ["email":email, "password":password])
-        let urlString = "c"
+        let urlString = "http://dev.rapptrlabs.com/Tests/scripts/login.php"
         let requestURL = URL(string: urlString)!
         var requestHeader = URLRequest.init(url: requestURL)
         
@@ -52,8 +56,6 @@ class LoginClient {
         session?.dataTask(with: requestHeader, completionHandler: { data, response, error in
             
             do {
-                
-                
                 if let httpResponse = response as? HTTPURLResponse {
                     if let decodedData = try JSONDecoder().decode(LoginResponse?.self, from: data!) {
                         
@@ -71,34 +73,13 @@ class LoginClient {
                             DispatchQueue.main.async {
                                 errorHandler(decodedData.message)
                             }
-                            
-                            
                         }
-                        
-                        
                     }
                 }
-                
-                
             }
-            
             catch {
-                
-                
+                print(error)
             }
-            
         }).resume()
-        
-        
-        
-        
-        
-        
-        
     }
-    
-    
-    
-    
 }
-

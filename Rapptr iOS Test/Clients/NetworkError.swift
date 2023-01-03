@@ -10,6 +10,8 @@ import Foundation
 enum NetworkError: Error {
     case invalidURL
     case invalidResponse
+    case invalidUserName
+    case invalidPassword
     case invalidData
     case unableToComplete
 }

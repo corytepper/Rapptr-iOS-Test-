@@ -30,7 +30,7 @@ class LoginViewController: UIViewController {
     
     
     // MARK: - Properties
-    private var client: LoginClient?
+    var client = LoginClient()
     
     let image = "img_login"
     
@@ -70,52 +70,33 @@ class LoginViewController: UIViewController {
 //    }
     
     @objc private func loginButtonTapped(sender: UIButton) {
-        print("loginButtontapped")
-        
         guard let email = emailTextField.text else {
             return }
         guard let password = passwordTextField.text else {
             return }
         
-        client?.login(email: email, password: password, completion: { responseTime in
-            self.displayAlert(withResponseTime: responseTime, withError: nil)
+        client.login(email: email, password: password, completion: { responseTime in
+            self.presentRapptrAlertOnMainThread(title: "Login Complete", message: responseTime , buttonTitle: "OK")
             
         }, error: { error in
-            self.displayAlert(withResponseTime: nil, withError: error)
+            self.presentRapptrAlertOnMainThread(title: "Error", message: "\(error!)", buttonTitle: "OK")
             
         })
         
     }
     
-    func displayAlert(withResponseTime: String?, withError: String?) {
-        
-        if let responseTime = withResponseTime {
-            let alert = UIAlertController(title: "Success", message: responseTime, preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "Okay", style: .default) { action in
-                //pop the current (login) controller to go back to menu controller
-                self.navigationController?.popViewController(animated: true)
-                
-            }
-            alert.addAction(alertAction)
-            self.present(alert, animated: true, completion: nil)
-            
-        }
-        
-        
-        if let error = withError {
-            
-            let alert = UIAlertController(title: "Unsuccessful", message: "Login was unsuccessful.\n" + error, preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "Okay", style: .default) { action in
-                
-                self.dismiss(animated: true, completion: nil)
-                
-            }
-            alert.addAction(alertAction)
-            self.present(alert, animated: true, completion: nil)
-        }
-        
-        
-    }
+//    // MARK: - Functions
+//    @objc func textFieldDidChange(_ sender: UITextField) {
+//        if emailTextField.text == "" || passwordTextField.text == "" {
+//            loginButton.isEnabled = false;
+//            loginButton.layer.opacity = 0.6
+//        } else {
+//            loginButton.isEnabled = true;
+//            loginButton.layer.opacity = 1.0
+//        }
+//    }
+
+
     
     func configureUIElements() {
         
