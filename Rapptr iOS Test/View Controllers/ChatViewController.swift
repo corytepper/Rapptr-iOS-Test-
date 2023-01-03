@@ -57,6 +57,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ChatRowViewCell(message: messages[indexPath.row])
         cell.accessoryType = UITableViewCell.AccessoryType.none
+        tableView.separatorStyle = .none
         return cell
     }
     

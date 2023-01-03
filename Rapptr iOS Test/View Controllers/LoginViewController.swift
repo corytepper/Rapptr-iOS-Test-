@@ -13,7 +13,7 @@
  *
  * 2) Take email and password input from the user
  *
- * 3) Use the endpoint and paramters provided in LoginClient.m to perform the log in
+ * 3) Use the endpoint and parameters provided in LoginClient  to perform the log in
  *
  * 4) Calculate how long the API call took in milliseconds
  *
@@ -27,8 +27,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    
-    
     // MARK: - Properties
     var client = LoginClient()
     
@@ -40,8 +38,7 @@ class LoginViewController: UIViewController {
     let passwordTextField = RapptrTextField()
     let loginButton = RapptrButton()
     
-    
-    
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,15 +57,6 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Actions
-//    @IBAction func backAction(_ sender: Any) {
-//        let mainMenuViewController = MenuViewController()
-//        self.navigationController?.pushViewController(mainMenuViewController, animated: true)
-//    }
-    
-//    @IBAction func didPressLoginButton(_ sender: Any) {
-//    }
-    
     @objc private func loginButtonTapped(sender: UIButton) {
         guard let email = emailTextField.text else {
             return }
@@ -85,23 +73,9 @@ class LoginViewController: UIViewController {
         
     }
     
-//    // MARK: - Functions
-//    @objc func textFieldDidChange(_ sender: UITextField) {
-//        if emailTextField.text == "" || passwordTextField.text == "" {
-//            loginButton.isEnabled = false;
-//            loginButton.layer.opacity = 0.6
-//        } else {
-//            loginButton.isEnabled = true;
-//            loginButton.layer.opacity = 1.0
-//        }
-//    }
-
-
     
     func configureUIElements() {
-        
         view.addSubview(backgroundImage)
-        view.addSubview(stackView)
         
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         backgroundImage.image = UIImage(named: image)
@@ -115,6 +89,8 @@ class LoginViewController: UIViewController {
         stackView.addArrangedSubview(emailTextField)
         stackView.addArrangedSubview(passwordTextField)
         stackView.addArrangedSubview(loginButton)
+        
+        view.addSubview(stackView)
    
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.set(backgroundColor: .white, placeholder: "Email")
@@ -129,18 +105,16 @@ class LoginViewController: UIViewController {
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
     }
     
+    
     func layoutUIElements() {
-        
         NSLayoutConstraint.activate([
             backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
             backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 64),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 30),
            
             emailTextField.heightAnchor.constraint(equalToConstant: 55),
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
@@ -157,8 +131,8 @@ class LoginViewController: UIViewController {
     }
 }
 
+// MARK: - Extensions
 extension LoginViewController : UITextFieldDelegate {
-    
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true
@@ -168,7 +142,6 @@ extension LoginViewController : UITextFieldDelegate {
         if textField == self.emailTextField {
             textField.resignFirstResponder()
             return false
-            
         }
         
         if textField == self.passwordTextField {
@@ -177,7 +150,5 @@ extension LoginViewController : UITextFieldDelegate {
         }
         
         return true
-        
-        
     }
 }

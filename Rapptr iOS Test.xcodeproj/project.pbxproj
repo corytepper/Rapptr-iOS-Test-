@@ -12,12 +12,10 @@
 		2F5058E42962619E00995867 /* Rapptr_AlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5058E32962619E00995867 /* Rapptr_AlertContainerView.swift */; };
 		2F5058E6296265A500995867 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5058E5296265A500995867 /* UIViewController+Ext.swift */; };
 		2F5058E829649E7F00995867 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5058E729649E7F00995867 /* UIView+Ext.swift */; };
-		2F988C57294D2CB00043ABBC /* BrandColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F988C56294D2CB00043ABBC /* BrandColors.swift */; };
 		2F988C59294D43F20043ABBC /* Rapptr_Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F988C58294D43F20043ABBC /* Rapptr_Button.swift */; };
 		2F988C5B294D463C0043ABBC /* Rapptr_TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F988C5A294D463C0043ABBC /* Rapptr_TextField.swift */; };
 		2FD1300029510A51003A5198 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD12FFF29510A51003A5198 /* NavBar.swift */; };
 		2FD1302429523163003A5198 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD1302329523163003A5198 /* LoginResponse.swift */; };
-		2FD1302C29538E63003A5198 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD1302B29538E63003A5198 /* Errors.swift */; };
 		2FD1302E29539450003A5198 /* ChatRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD1302D29539450003A5198 /* ChatRowView.swift */; };
 		2FD13032295399A9003A5198 /* ChatRowViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD13031295399A9003A5198 /* ChatRowViewCell.swift */; };
 		E9414DB726C45CF300512A71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9414DB626C45CF300512A71 /* AppDelegate.swift */; };
@@ -40,12 +38,10 @@
 		2F5058E32962619E00995867 /* Rapptr_AlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rapptr_AlertContainerView.swift; sourceTree = "<group>"; };
 		2F5058E5296265A500995867 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		2F5058E729649E7F00995867 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
-		2F988C56294D2CB00043ABBC /* BrandColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandColors.swift; sourceTree = "<group>"; };
 		2F988C58294D43F20043ABBC /* Rapptr_Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rapptr_Button.swift; sourceTree = "<group>"; };
 		2F988C5A294D463C0043ABBC /* Rapptr_TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rapptr_TextField.swift; sourceTree = "<group>"; };
 		2FD12FFF29510A51003A5198 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		2FD1302329523163003A5198 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
-		2FD1302B29538E63003A5198 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		2FD1302D29539450003A5198 /* ChatRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRowView.swift; sourceTree = "<group>"; };
 		2FD13031295399A9003A5198 /* ChatRowViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRowViewCell.swift; sourceTree = "<group>"; };
 		E9414DB326C45CF300512A71 /* Rapptr iOS Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rapptr iOS Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,11 +71,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2F988C1D294BE0AC0043ABBC /* Buttons */ = {
+		2F5058E92964B0EE00995867 /* Alerts */ = {
 			isa = PBXGroup;
 			children = (
+				2F5058E1296260AA00995867 /* AlertViewController.swift */,
+				2F5058E32962619E00995867 /* Rapptr_AlertContainerView.swift */,
 			);
-			path = Buttons;
+			path = Alerts;
+			sourceTree = "<group>";
+		};
+		2F5058EA2964B12500995867 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2F5058E729649E7F00995867 /* UIView+Ext.swift */,
+				2F5058E5296265A500995867 /* UIViewController+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2F988C1D294BE0AC0043ABBC /* Buttons_TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				2F988C5A294D463C0043ABBC /* Rapptr_TextField.swift */,
+				2F988C58294D43F20043ABBC /* Rapptr_Button.swift */,
+			);
+			path = Buttons_TextFields;
 			sourceTree = "<group>";
 		};
 		E9414DAA26C45CF300512A71 = {
@@ -101,7 +117,9 @@
 		E9414DB526C45CF300512A71 /* Rapptr iOS Test */ = {
 			isa = PBXGroup;
 			children = (
-				2F988C1D294BE0AC0043ABBC /* Buttons */,
+				2F5058EA2964B12500995867 /* Extensions */,
+				2F5058E92964B0EE00995867 /* Alerts */,
+				2F988C1D294BE0AC0043ABBC /* Buttons_TextFields */,
 				E9414DB626C45CF300512A71 /* AppDelegate.swift */,
 				E9414DE926C468D700512A71 /* SceneDelegate.swift */,
 				E9414DD226C4617B00512A71 /* Views */,
@@ -111,8 +129,6 @@
 				E9414DBF26C45CF400512A71 /* Assets.xcassets */,
 				E9414DC126C45CF400512A71 /* LaunchScreen.storyboard */,
 				E9414DC426C45CF400512A71 /* Info.plist */,
-				2F988C56294D2CB00043ABBC /* BrandColors.swift */,
-				2FD1302B29538E63003A5198 /* Errors.swift */,
 			);
 			path = "Rapptr iOS Test";
 			sourceTree = "<group>";
@@ -130,10 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				E9414DCD26C45F9200512A71 /* LoginClient.swift */,
-				2F5058E1296260AA00995867 /* AlertViewController.swift */,
-				2F5058E729649E7F00995867 /* UIView+Ext.swift */,
-				2F5058E5296265A500995867 /* UIViewController+Ext.swift */,
-				2F5058E32962619E00995867 /* Rapptr_AlertContainerView.swift */,
 				E9414DD026C460A600512A71 /* ChatClient.swift */,
 				2F125AD7295E42AE00C810AA /* NetworkError.swift */,
 			);
@@ -165,8 +177,6 @@
 				E9414DDE26C4618900512A71 /* LoginViewController.swift */,
 				E9414DE026C4618900512A71 /* MenuViewController.swift */,
 				E9414DDC26C4618900512A71 /* MenuViewController.xib */,
-				2F988C5A294D463C0043ABBC /* Rapptr_TextField.swift */,
-				2F988C58294D43F20043ABBC /* Rapptr_Button.swift */,
 				2FD12FFF29510A51003A5198 /* NavBar.swift */,
 			);
 			path = "View Controllers";
@@ -247,9 +257,7 @@
 				2F5058E6296265A500995867 /* UIViewController+Ext.swift in Sources */,
 				E9414DE126C4618900512A71 /* ChatViewController.swift in Sources */,
 				E9414DCE26C45F9200512A71 /* LoginClient.swift in Sources */,
-				2F988C57294D2CB00043ABBC /* BrandColors.swift in Sources */,
 				2F5058E2296260AA00995867 /* AlertViewController.swift in Sources */,
-				2FD1302C29538E63003A5198 /* Errors.swift in Sources */,
 				2F988C5B294D463C0043ABBC /* Rapptr_TextField.swift in Sources */,
 				E9414DE826C4618900512A71 /* MenuViewController.swift in Sources */,
 				E9414DCB26C45EC900512A71 /* Message.swift in Sources */,
@@ -403,13 +411,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q584HK9U5R;
 				INFOPLIST_FILE = "Rapptr iOS Test/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rapptrlabs.Rapptr-iOS-Test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.corytepper.Rapptr-iOS-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -422,13 +431,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q584HK9U5R;
 				INFOPLIST_FILE = "Rapptr iOS Test/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rapptrlabs.Rapptr-iOS-Test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.corytepper.Rapptr-iOS-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -20,9 +20,9 @@ struct ChatRowView: View {
                     .frame(width: 40, height: 40, alignment: .center)
                     .cornerRadius(20)
             } placeholder: {
-                Image("")
+                Image("Cory_Tepper")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: 40, height: 40, alignment: .center)
                     .cornerRadius(20)
             }

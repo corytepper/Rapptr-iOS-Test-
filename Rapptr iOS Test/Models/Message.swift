@@ -29,7 +29,7 @@ struct Message: Decodable  {
 
         self.userID = "0"
         self.username = testName
-        self.avatarURL = URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/220px-Smiley.svg.png")
+        self.avatarURL = Bundle.main.url(forResource: "Cory_Tepper", withExtension: "jpg")
         self.text = message
     }
 }
