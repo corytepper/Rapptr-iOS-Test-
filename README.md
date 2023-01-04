@@ -1,13 +1,32 @@
-Hello!
 
-Your task is to use the provided project to create the iOS app displayed in the provided PDF.
+Hello Rapptr 🦖
 
-You will find more detailed instructions as comments inside of the project.
+Thank you for this fun coding test.
 
-All required design assets are already inside of the provided project.
+The MenuVC is built with Storyboards.
 
-Bonus Points:
-- Show you can create UI and Auto Layout programmatically as well as through Storyboard/Interface Builder
-- Show us you can add Cocoapods to this project. We will allow the use of one single pod.
+The LoginVC is built programmatically and the LoginClient uses URLSession.
 
-Good luck!
+The ChatVC is built programmatically with a SwiftUI custom cell using AsyncImage. The ChatClient uses the new Async/Await network call.
+
+The AnimationVC is built programmatically and has a fun CoreMotion bonus.
+
+I extracted the buttons and text fields into their own classes as a scaling example.
+
+I also added some custom alerts that are more on brand than the baked in Apple alerts.
+
+I chose not to use a pods/packages on this project, although I would probably use an image caching library compatible with AsyncImage as it does not currently support caching internally.
+
+I was on the fence about implementing MVVM, ultimately deciding not too for simplicity.
+
+I used the variety of techniques to show my skill set and this is not representative of how I would build a client app. Ideally I would use programmatic UI and/or SwiftUI and a generic network manager to handle a variety of network calls.
+
+Thanks for a lovely challenge, Happy New Year!🎇 and I look forward to chatting with you soon 📲.
+
+Best,
+Cory Tepper
+www.corytepper.com
+3603109782
+corytepper@gmail.com
+
+
