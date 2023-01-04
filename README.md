@@ -15,13 +15,13 @@ The ChatVC is built programmatically with a SwiftUI custom cell using AsyncImage
 
 
 The AnimationVC is built programmatically and has a fun CoreMotion bonus.<br /> 
-img src="https://user-images.githubusercontent.com/7978084/210638509-27962038-6cd3-4357-a9c9-2bbd31b8fdf5.png" height="400" />
+<img src="https://user-images.githubusercontent.com/7978084/210638509-27962038-6cd3-4357-a9c9-2bbd31b8fdf5.png" height="400" />
 
 I also added some custom alerts that are more on brand than the baked in Apple alerts.<br /> 
 <img src="https://user-images.githubusercontent.com/7978084/210638499-2245081d-e273-4e9e-a572-43251bbf09d0.png" height="400" />
 <img src="https://user-images.githubusercontent.com/7978084/210638504-f7119e17-98f9-42e3-82e6-88987432bd0b.png" height="400" />
 
-I chose not to use a pods/packages on this project, although I would probably use an image caching library compatible with AsyncImage as it does not currently support caching internally.
+I chose not to use a pod/package on this project, although I would probably use an image caching library compatible with AsyncImage as it does not currently support caching internally.
 
 I was on the fence about implementing MVVM, ultimately deciding not too for simplicity.
 
