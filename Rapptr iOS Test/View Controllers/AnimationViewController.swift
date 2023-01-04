@@ -20,7 +20,7 @@ class AnimationViewController: UIViewController {
      * 3) User should be able to drag the logo around the screen with his/her fingers
      *
      * 4) Add a bonus to make yourself stick out. Music, color, fireworks, explosions!!! Have Swift experience? Why not write the Animation
-     *    section in Swfit to show off your skills. Anything your heart desires!
+     *    section in Swift to show off your skills. Anything your heart desires!
      *
      */
     
@@ -29,10 +29,6 @@ class AnimationViewController: UIViewController {
     let fadeButton = RapptrButton()
     let gravityButton = RapptrButton()
     var gravityBool = false
-    
-//    var gravity: Gravity?
-    
-    
     
     var animator: UIDynamicAnimator!
     var gravity: UIGravityBehavior!
@@ -48,33 +44,84 @@ class AnimationViewController: UIViewController {
         setupNavBar(title: title ?? "")
         configureUIElements()
         layoutUIElements()
-        
-        let tapGR = UIPanGestureRecognizer(target: self, action: #selector(self.dragImg(_:)))
-        logo.addGestureRecognizer(tapGR)
-        logo.isUserInteractionEnabled = true
-        
-//        let gravityItems: [UIDynamicItem] = [logo, fadeButton, partyButton]
-//
-//        let gravity = Gravity(
-//            gravityItems: gravityItems,
-//            collisionItems: nil,
-//            referenceView: self.view,
-//            boundary: UIBezierPath(rect: self.view.frame),
-//            queue: nil)
-        
-        
     }
     
     
-    @objc func dragImg(_ sender:UIPanGestureRecognizer){
+    // MARK: - Interactions
+    @objc func dragImage(_ sender:UIPanGestureRecognizer){
         let translation = sender.translation(in: self.view)
         logo.center = CGPoint(x: logo.center.x + translation.x, y: logo.center.y + translation.y)
         sender.setTranslation(CGPoint.zero, in: self.view)
     }
     
     
-    func configureUIElements() {
+    @objc func fadeButtonTapped() {
+        let imageBool = logo.alpha == 0
+        imageBool ? logo.fadeIn() : logo.fadeOut()
+        imageBool ? fadeButton.setTitle("FADE OUT", for: .normal) : fadeButton.setTitle("FADE IN", for: .normal)
+    }
+    
+    
+    @objc func gravityButtonTapped() {
+        gravityBool ?  removeGravity() : addGravity()
+        gravityBool ? gravityButton.setTitle("RESET", for: .normal) : gravityButton.setTitle("GRAVITY", for: .normal)
+    }
+    
+    
+    // MARK: - Gravity Methods
+    func addGravity() {
+        gravityBool = true
+        queue = OperationQueue.current
+        animator = UIDynamicAnimator(referenceView: self.view)
+        gravity = UIGravityBehavior(items: [logo, fadeButton, gravityButton])
+        motion = CMMotionManager()
         
+        let collision = UICollisionBehavior(items: [logo, fadeButton, gravityButton])
+        collision.addBoundary(withIdentifier: "borders" as NSCopying, for: UIBezierPath(rect: self.view.frame))
+        
+        
+        animator.addBehavior(gravity)
+        animator.addBehavior(collision)
+        motion.startDeviceMotionUpdates(to: queue, withHandler: motionHandler)
+    }
+    
+    func removeGravity() {
+        gravityBool = false
+        animator.removeAllBehaviors()
+        motion.stopDeviceMotionUpdates()
+    }
+    
+    private func motionHandler( motion: CMDeviceMotion?, error: Error? ) {
+        guard let motion = motion else { return }
+        
+        let grav: CMAcceleration = motion.gravity
+        let x = CGFloat(grav.x)
+        let y = CGFloat(grav.y)
+        var p = CGPoint(x: x, y: y)
+        
+        if let orientation = UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.windowScene?.interfaceOrientation {
+            if orientation == .landscapeLeft {
+                let t = p.x
+                p.x = 0 - p.y
+                p.y = t
+            } else if orientation == .landscapeRight {
+                let t = p.x
+                p.x = p.y
+                p.y = 0 - t
+            } else if orientation == .portraitUpsideDown {
+                p.x *= -1
+                p.y *= -1
+            }
+        }
+        
+        let v = CGVector(dx: p.x, dy: 0 - p.y)
+        self.gravity.gravityDirection = v
+    }
+    
+    
+    
+    // MARK: - Setup
+    func configureUIElements() {
         view.backgroundColor = UIColor(named: "UIView_BG")
         view.addSubview(logo)
         view.addSubview(fadeButton)
@@ -91,10 +138,14 @@ class AnimationViewController: UIViewController {
         gravityButton.set(backgroundColor: UIColor(named: "Rapptr_Blue")!, title: "GRAVITY")
         gravityButton.translatesAutoresizingMaskIntoConstraints = false
         gravityButton.addTarget(self, action: #selector(gravityButtonTapped), for: .touchUpInside)
+        
+        let tapGR = UIPanGestureRecognizer(target: self, action: #selector(self.dragImage(_:)))
+        logo.addGestureRecognizer(tapGR)
+        logo.isUserInteractionEnabled = true
     }
     
+    
     func layoutUIElements() {
-        
         logo.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100).isActive = true
         logo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
@@ -112,69 +163,7 @@ class AnimationViewController: UIViewController {
         gravityButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
         gravityButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
     }
-    
-    @objc func fadeButtonTapped() {
-        let imageBool = logo.alpha == 0
-        imageBool ? logo.fadeIn() : logo.fadeOut()
-        imageBool ? fadeButton.setTitle("FADE OUT", for: .normal) : fadeButton.setTitle("FADE IN", for: .normal)
-        
-    }
-    
-    @objc func gravityButtonTapped() {
-        gravityBool ?  removeGravity() : addGravity()
-        gravityBool ? gravityButton.setTitle("RESET", for: .normal) : gravityButton.setTitle("GRAVITY", for: .normal)
-    }
-    
-    func addGravity() {
-        gravityBool = true
-        queue = OperationQueue.current
-        animator = UIDynamicAnimator(referenceView: self.view)
-        gravity = UIGravityBehavior(items: [logo, fadeButton, gravityButton])
-        motion = CMMotionManager()
-
-        let collision = UICollisionBehavior(items: [logo, fadeButton, gravityButton])
-        collision.addBoundary(withIdentifier: "borders" as NSCopying, for: UIBezierPath(rect: self.view.frame))
-
-        
-        animator.addBehavior(gravity)
-        animator.addBehavior(collision)
-        motion.startDeviceMotionUpdates(to: queue, withHandler: motionHandler)
-    }
-    
-    func removeGravity() {
-        gravityBool = false
-        animator.removeAllBehaviors()
-        motion.stopDeviceMotionUpdates()
-    }
-        
-        
-        private func motionHandler( motion: CMDeviceMotion?, error: Error? ) {
-                guard let motion = motion else { return }
-
-                let grav: CMAcceleration = motion.gravity
-                let x = CGFloat(grav.x)
-                let y = CGFloat(grav.y)
-                var p = CGPoint(x: x, y: y)
-
-                if let orientation = UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.windowScene?.interfaceOrientation {
-                    if orientation == .landscapeLeft {
-                        let t = p.x
-                        p.x = 0 - p.y
-                        p.y = t
-                    } else if orientation == .landscapeRight {
-                        let t = p.x
-                        p.x = p.y
-                        p.y = 0 - t
-                    } else if orientation == .portraitUpsideDown {
-                        p.x *= -1
-                        p.y *= -1
-                    }
-                }
-
-                let v = CGVector(dx: p.x, dy: 0 - p.y)
-                self.gravity.gravityDirection = v
-            }
-    }
+}
 
 
 public extension UIView {
@@ -192,4 +181,4 @@ public extension UIView {
     
     
 }
-    
+

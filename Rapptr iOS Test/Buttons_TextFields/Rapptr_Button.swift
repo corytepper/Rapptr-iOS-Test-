@@ -32,10 +32,6 @@ class RapptrButton: UIButton {
         setTitleColor(.white, for: .normal)
         
         translatesAutoresizingMaskIntoConstraints = false
-        
-//        NSLayoutConstraint.activate([
-//            heightAnchor.constraint(equalToConstant: 95)
-//        ])
     }
     
     

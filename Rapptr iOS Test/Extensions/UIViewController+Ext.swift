@@ -15,8 +15,16 @@ extension UIViewController {
             alertVC.modalPresentationStyle = .overFullScreen
             alertVC.modalTransitionStyle = .crossDissolve
             self.present(alertVC, animated: true)
+            
+            if popToRootVC {
+                self.navigationController?.popToRootViewController(animated: true)
+            } else {
+                return
+            }
         }
     }
+    
+    
     
     
 //    func presentRapptrAlertAndPop(title: String, message: String, buttonTitle: String, handler: @escaping (Bool) -> Void) {

@@ -42,6 +42,7 @@ class LoginClient {
         return data.map { String($0) }.joined(separator: "&")
     }
     
+    // MARK: - Network call using URLSession
     func login(email: String, password: String, completion: @escaping (String) -> Void, error errorHandler: @escaping (String?) -> Void) {
         
         let parameters = getPostString(params: ["email":email, "password":password])

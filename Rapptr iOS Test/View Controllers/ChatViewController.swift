@@ -34,8 +34,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         getMessages()
     }
     
-    
-    // MARK: - Private
+    // MARK: - TableView Setup
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -61,6 +60,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
+    // MARK: - Network Call
     func getMessages() {
         Task {
             do {

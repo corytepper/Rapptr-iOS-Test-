@@ -8,9 +8,6 @@
 import UIKit
 
 class RapptrTextField: UITextField {
-    
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -25,7 +22,6 @@ class RapptrTextField: UITextField {
         self.backgroundColor = backgroundColor
         self.attributedPlaceholder = NSAttributedString(string: "yourPlaceholderText")
         self.placeholder = "\(placeholder)"
-        
     }
     
     private func configure() {
@@ -42,19 +38,14 @@ class RapptrTextField: UITextField {
     }
     
     
-    
-    
-    
-    
     func set(backgroundColor: UIColor, placeholder: String) {
         self.backgroundColor = backgroundColor.withAlphaComponent(0.6)
         let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .regular), NSAttributedString.Key.foregroundColor : UIColor(named: "Rapptr_Gray_placeholder")]
         let attributedText = NSAttributedString(string: placeholder, attributes: attributes as [NSAttributedString.Key : Any])
         self.attributedPlaceholder = attributedText
-        
     }
-    
 }
+
 
 extension UITextField {
     func setLeftPaddingPoints(_ amount:CGFloat){

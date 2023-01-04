@@ -50,11 +50,7 @@ class LoginViewController: UIViewController {
         layoutUIElements()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+    // MARK: - Interaction
     @objc private func loginButtonTapped(sender: UIButton) {
         guard let email = emailTextField.text else {
             return }
@@ -64,16 +60,13 @@ class LoginViewController: UIViewController {
         client.login(email: email, password: password, completion: { responseTime in
             self.presentRapptrAlert(title: "Login Complete", message: responseTime , buttonTitle: "OK", popToRootVC: true)
             
-            
         }, error: { error in
             self.presentRapptrAlert(title: "Error", message: "\(error!)", buttonTitle: "Try Again!", popToRootVC: false)
-            
         })
-        
-        
     }
     
     
+    // MARK: - Setup
     func configureUIElements() {
         view.addSubview(backgroundImage)
         
@@ -95,11 +88,9 @@ class LoginViewController: UIViewController {
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.set(backgroundColor: .white, placeholder: "Email")
         
-
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.set(backgroundColor: .white, placeholder: "Password")
         
-
         loginButton.set(backgroundColor: UIColor(named: "Rapptr_Blue")!, title: "LOGIN")
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         

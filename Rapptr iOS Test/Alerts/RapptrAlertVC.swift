@@ -29,7 +29,6 @@ class Rapptr_AlertVC: UIViewController {
         self.message       = message
         self.buttonTitle   = buttonTitle
         self.popToRootVC   = popToRootVC
-        
     }
     
     
@@ -48,12 +47,7 @@ class Rapptr_AlertVC: UIViewController {
         configureActionButton()
         configureMessageLabel()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        print("alert dissappeared")
-        
-    }
-    
+
     
     func configureContainerView() {
         NSLayoutConstraint.activate([
@@ -72,6 +66,7 @@ class Rapptr_AlertVC: UIViewController {
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.minimumScaleFactor        = 0.9
         titleLabel.lineBreakMode             = .byTruncatingTail
+        titleLabel.textAlignment             = .center
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -107,6 +102,7 @@ class Rapptr_AlertVC: UIViewController {
         messageLabel.adjustsFontSizeToFitWidth         = true
         messageLabel.minimumScaleFactor                = 0.75
         messageLabel.lineBreakMode                     = .byWordWrapping
+        messageLabel.textAlignment                     = .center
         
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -120,19 +116,7 @@ class Rapptr_AlertVC: UIViewController {
     
     
     @objc func dismissVC() {
-        if popToRootVC {
-            dismiss(animated: true) {
-                //Go to Menu View Controller
-                
-                
-            }
-            
-               
-            
-        } else {
-            self.dismiss(animated: true)
-        }
-        
+        self.dismiss(animated: true)
     }
     
 }

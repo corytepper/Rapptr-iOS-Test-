@@ -26,6 +26,7 @@ final class ChatClient {
     
     private init() {}
     
+    // MARK: - Network call using Async/Await
     func getMessages() async throws -> [Message] {
         guard let url = URL(string: chatURL) else  {
             throw NetworkError.invalidURL
