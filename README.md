@@ -26,7 +26,8 @@ Thanks for a lovely challenge, Happy New Year!🎇 and I look forward to chattin
 Best,<br /> 
 Cory Tepper<br /> 
 www.corytepper.com<br /> 
-3603109782<br /> 
-corytepper@gmail.com
+corytepper@gmail.com<br /> 
+3603109782
+
 
 
