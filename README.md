@@ -23,10 +23,10 @@ I used the variety of techniques to show my skill set and this is not representa
 
 Thanks for a lovely challenge, Happy New Year!🎇 and I look forward to chatting with you soon 📲.
 
-Best,
-Cory Tepper
-www.corytepper.com
-3603109782
+Best,<br /> 
+Cory Tepper<br /> 
+www.corytepper.com<br /> 
+3603109782<br /> 
 corytepper@gmail.com
 
 
