@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class ChatRowViewCell: UITableViewCell {
+final class ChatRowViewCell: UITableViewCell {
     
     init(message: Message) {
         super.init(style: .default, reuseIdentifier: "ChatRowViewCell")

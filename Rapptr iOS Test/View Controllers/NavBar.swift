@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
     
-    func setupNavBar(title: String) {
+     func setupNavBar(title: String) {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.backgroundColor = UIColor(named: "Rapptr_Blue")

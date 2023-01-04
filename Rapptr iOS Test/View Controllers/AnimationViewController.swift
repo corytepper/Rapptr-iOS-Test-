@@ -4,37 +4,38 @@
 //
 //  Copyright © 2020 Rapptr Labs. All rights reserved.
 
+
+/**
+ * =========================================================================================
+ * INSTRUCTIONS
+ * =========================================================================================
+ * 1) Make the UI look like it does in the mock-up.
+ *
+ * 2) Logo should fade out or fade in when the user hits the Fade In or Fade Out button
+ *
+ * 3) User should be able to drag the logo around the screen with his/her fingers
+ *
+ * 4) Add a bonus to make yourself stick out. Music, color, fireworks, explosions!!! Have Swift experience? Why not write the Animation
+ *    section in Swift to show off your skills. Anything your heart desires!
+ *
+ */
+
+
 import UIKit
 import CoreMotion
 
-class AnimationViewController: UIViewController {
+final class AnimationViewController: UIViewController {
+    private let image = "ic_logo"
+    private let logo = UIImageView()
+    private let fadeButton = RapptrButton()
+    private let gravityButton = RapptrButton()
+    private var gravityBool = false
     
-    /**
-     * =========================================================================================
-     * INSTRUCTIONS
-     * =========================================================================================
-     * 1) Make the UI look like it does in the mock-up.
-     *
-     * 2) Logo should fade out or fade in when the user hits the Fade In or Fade Out button
-     *
-     * 3) User should be able to drag the logo around the screen with his/her fingers
-     *
-     * 4) Add a bonus to make yourself stick out. Music, color, fireworks, explosions!!! Have Swift experience? Why not write the Animation
-     *    section in Swift to show off your skills. Anything your heart desires!
-     *
-     */
+    private var animator: UIDynamicAnimator!
+    private var gravity: UIGravityBehavior!
+    private var motion: CMMotionManager!
     
-    let image = "ic_logo"
-    let logo = UIImageView()
-    let fadeButton = RapptrButton()
-    let gravityButton = RapptrButton()
-    var gravityBool = false
-    
-    var animator: UIDynamicAnimator!
-    var gravity: UIGravityBehavior!
-    var motion: CMMotionManager!
-    
-    var queue: OperationQueue!
+    private var queue: OperationQueue!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -48,28 +49,28 @@ class AnimationViewController: UIViewController {
     
     
     // MARK: - Interactions
-    @objc func dragImage(_ sender:UIPanGestureRecognizer){
+    @objc private func dragImage(_ sender:UIPanGestureRecognizer){
         let translation = sender.translation(in: self.view)
         logo.center = CGPoint(x: logo.center.x + translation.x, y: logo.center.y + translation.y)
         sender.setTranslation(CGPoint.zero, in: self.view)
     }
     
     
-    @objc func fadeButtonTapped() {
+    @objc private func fadeButtonTapped() {
         let imageBool = logo.alpha == 0
         imageBool ? logo.fadeIn() : logo.fadeOut()
         imageBool ? fadeButton.setTitle("FADE OUT", for: .normal) : fadeButton.setTitle("FADE IN", for: .normal)
     }
     
     
-    @objc func gravityButtonTapped() {
+    @objc private func gravityButtonTapped() {
         gravityBool ?  removeGravity() : addGravity()
         gravityBool ? gravityButton.setTitle("RESET", for: .normal) : gravityButton.setTitle("GRAVITY", for: .normal)
     }
     
     
     // MARK: - Gravity Methods
-    func addGravity() {
+    private func addGravity() {
         gravityBool = true
         queue = OperationQueue.current
         animator = UIDynamicAnimator(referenceView: self.view)
@@ -85,43 +86,16 @@ class AnimationViewController: UIViewController {
         motion.startDeviceMotionUpdates(to: queue, withHandler: motionHandler)
     }
     
-    func removeGravity() {
+    private func removeGravity() {
         gravityBool = false
         animator.removeAllBehaviors()
         motion.stopDeviceMotionUpdates()
+        viewDidLoad()
     }
-    
-    private func motionHandler( motion: CMDeviceMotion?, error: Error? ) {
-        guard let motion = motion else { return }
-        
-        let grav: CMAcceleration = motion.gravity
-        let x = CGFloat(grav.x)
-        let y = CGFloat(grav.y)
-        var p = CGPoint(x: x, y: y)
-        
-        if let orientation = UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.windowScene?.interfaceOrientation {
-            if orientation == .landscapeLeft {
-                let t = p.x
-                p.x = 0 - p.y
-                p.y = t
-            } else if orientation == .landscapeRight {
-                let t = p.x
-                p.x = p.y
-                p.y = 0 - t
-            } else if orientation == .portraitUpsideDown {
-                p.x *= -1
-                p.y *= -1
-            }
-        }
-        
-        let v = CGVector(dx: p.x, dy: 0 - p.y)
-        self.gravity.gravityDirection = v
-    }
-    
     
     
     // MARK: - Setup
-    func configureUIElements() {
+    private func configureUIElements() {
         view.backgroundColor = UIColor(named: "UIView_BG")
         view.addSubview(logo)
         view.addSubview(fadeButton)
@@ -145,7 +119,7 @@ class AnimationViewController: UIViewController {
     }
     
     
-    func layoutUIElements() {
+    private func layoutUIElements() {
         logo.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100).isActive = true
         logo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
@@ -166,7 +140,7 @@ class AnimationViewController: UIViewController {
 }
 
 
-public extension UIView {
+private extension UIView {
     func fadeIn(duration: TimeInterval = 1.0) {
         UIView.animate(withDuration: duration, animations: {
             self.alpha = 1.0
@@ -182,3 +156,32 @@ public extension UIView {
     
 }
 
+private extension AnimationViewController {
+    
+    private func motionHandler( motion: CMDeviceMotion?, error: Error? ) {
+        guard let motion = motion else { return }
+        
+        let grav: CMAcceleration = motion.gravity
+        let x = CGFloat(grav.x)
+        let y = CGFloat(grav.y)
+        var p = CGPoint(x: x, y: y)
+        
+        if let orientation = UIApplication.shared.connectedScenes.map({ $0 as? UIWindowScene }).compactMap({ $0 }).first?.interfaceOrientation {
+            if orientation == .landscapeLeft {
+                let t = p.x
+                p.x = 0 - p.y
+                p.y = t
+            } else if orientation == .landscapeRight {
+                let t = p.x
+                p.x = p.y
+                p.y = 0 - t
+            } else if orientation == .portraitUpsideDown {
+                p.x *= -1
+                p.y *= -1
+            }
+        }
+        
+        let v = CGVector(dx: p.x, dy: 0 - p.y)
+        self.gravity.gravityDirection = v
+    }
+}

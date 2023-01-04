@@ -26,18 +26,18 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
     // MARK: - Properties
-    var client = LoginClient()
+    private var client = LoginClient()
     
-    let image = "img_login"
+    private let image = "img_login"
     
-    let backgroundImage = UIImageView()
-    let stackView = UIStackView()
-    let emailTextField = RapptrTextField()
-    let passwordTextField = RapptrTextField()
-    let loginButton = RapptrButton()
+    private let backgroundImage = UIImageView()
+    private let stackView = UIStackView()
+    private let emailTextField = RapptrTextField()
+    private let passwordTextField = RapptrTextField()
+    private let loginButton = RapptrButton()
     
 
     // MARK: - Lifecycle
@@ -98,8 +98,7 @@ class LoginViewController: UIViewController {
     }
     
     
-    func layoutUIElements() {
-        
+    private func layoutUIElements() {
         backgroundImage.pinToEdges(of: view)
 
         NSLayoutConstraint.activate([

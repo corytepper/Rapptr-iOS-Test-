@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RapptrTextField: UITextField {
+final class RapptrTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -38,7 +38,7 @@ class RapptrTextField: UITextField {
     }
     
     
-    func set(backgroundColor: UIColor, placeholder: String) {
+     func set(backgroundColor: UIColor, placeholder: String) {
         self.backgroundColor = backgroundColor.withAlphaComponent(0.6)
         let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .regular), NSAttributedString.Key.foregroundColor : UIColor(named: "Rapptr_Gray_placeholder")]
         let attributedText = NSAttributedString(string: placeholder, attributes: attributes as [NSAttributedString.Key : Any])
@@ -47,7 +47,7 @@ class RapptrTextField: UITextField {
 }
 
 
-extension UITextField {
+private extension UITextField {
     func setLeftPaddingPoints(_ amount:CGFloat){
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
         self.leftView = paddingView

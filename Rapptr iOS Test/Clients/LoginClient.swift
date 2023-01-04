@@ -26,11 +26,11 @@ import UIKit
 // Query string to use (Keeps returning 'invalid parameters' for some reason)
 // http://dev.rapptrlabs.com/Tests/scripts/login.php?email=info@rapptrlabs.com&password=Test123
 
-class LoginClient {
-    static let shared = LoginClient()
+final class LoginClient {
+    static private let shared = LoginClient()
     
-    var session: URLSession?
-    let startTime = NSDate.timeIntervalSinceReferenceDate
+    private var session: URLSession?
+    private let startTime = NSDate.timeIntervalSinceReferenceDate
     
     func getPostString(params:[String:Any]) -> String
     {

@@ -4,25 +4,25 @@
 //
 //  Copyright © 2020 Rapptr Labs. All rights reserved.
 
+/**
+ * =========================================================================================
+ * INSTRUCTIONS
+ * =========================================================================================
+ * 1) Make the UI look like it does in the mock-up.
+ *
+ * 2) Using the following endpoint, fetch chat data
+ *    URL: http://dev.rapptrlabs.com/Tests/scripts/chat_log.php
+ *
+ * 3) Parse the chat data using 'Message' model
+ *
+ **/
+
 import UIKit
 
-class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+final class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let tableView = UITableView()
-    var messages: [Message] = []
-    
-    /**
-     * =========================================================================================
-     * INSTRUCTIONS
-     * =========================================================================================
-     * 1) Make the UI look like it does in the mock-up.
-     *
-     * 2) Using the following endpoint, fetch chat data
-     *    URL: http://dev.rapptrlabs.com/Tests/scripts/chat_log.php
-     *
-     * 3) Parse the chat data using 'Message' model
-     *
-     **/
+    private let tableView = UITableView()
+    private var messages: [Message] = []
     
     
     // MARK: - Lifecycle
@@ -61,7 +61,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     // MARK: - Network Call
-    func getMessages() {
+    private func getMessages() {
         Task {
             do {
                 messages = try await ChatClient.shared.getMessages()

@@ -26,12 +26,12 @@
 
 import UIKit
 
-class MenuViewController: UIViewController {
+final class MenuViewController: UIViewController {
     
     // MARK: - Outlets
-    @IBOutlet weak var chatButton: UIButton!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var animationButton: UIButton!
+    @IBOutlet weak private var chatButton: UIButton!
+    @IBOutlet weak private var loginButton: UIButton!
+    @IBOutlet weak private var animationButton: UIButton!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -41,17 +41,17 @@ class MenuViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func didPressChatButton(_ sender: Any) {
+    @IBAction private func didPressChatButton(_ sender: Any) {
         let chatViewController = ChatViewController()
         navigationController?.pushViewController(chatViewController, animated: true)
     }
     
-    @IBAction func didPressLoginButton(_ sender: Any) {
+    @IBAction private func didPressLoginButton(_ sender: Any) {
         let loginViewController = LoginViewController()
         navigationController?.pushViewController(loginViewController, animated: true)
     }
     
-    @IBAction func didPressAnimationButton(_ sender: Any) {
+    @IBAction private func didPressAnimationButton(_ sender: Any) {
         let animationViewController = AnimationViewController()
         navigationController?.pushViewController(animationViewController, animated: true)
     }

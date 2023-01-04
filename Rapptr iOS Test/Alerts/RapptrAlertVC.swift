@@ -9,18 +9,18 @@ import UIKit
 
 
 
-class Rapptr_AlertVC: UIViewController {
-    let containerView = RapptrAlertContainerView()
-    let titleLabel    = UILabel()
-    let messageLabel  = UILabel()
-    let actionButton  = RapptrButton(backgroundColor: .red, title: "Ok")
+final class Rapptr_AlertVC: UIViewController {
+    private let containerView = RapptrAlertContainerView()
+    private let titleLabel    = UILabel()
+    private let messageLabel  = UILabel()
+    private let actionButton  = RapptrButton(backgroundColor: .red, title: "Ok")
     
-    var alertTitle: String?
-    var message: String?
-    var buttonTitle: String?
-    var popToRootVC = Bool()
+    private var alertTitle: String?
+    private var message: String?
+    private var buttonTitle: String?
+    private var popToRootVC = Bool()
     
-    let padding: CGFloat = 20
+    private let padding: CGFloat = 20
     
     
     init(title: String, message: String?, buttonTitle: String, popToRootVC: Bool) {
@@ -49,7 +49,7 @@ class Rapptr_AlertVC: UIViewController {
     }
 
     
-    func configureContainerView() {
+    private func configureContainerView() {
         NSLayoutConstraint.activate([
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -59,7 +59,7 @@ class Rapptr_AlertVC: UIViewController {
     }
     
     
-    func configureTitleLabel() {
+    private func configureTitleLabel() {
         titleLabel.text = alertTitle ?? "Something went wrong"
         
         titleLabel.textColor                 = .label
@@ -79,7 +79,7 @@ class Rapptr_AlertVC: UIViewController {
     }
     
     
-    func configureActionButton() {
+    private func configureActionButton() {
         actionButton.setTitle(buttonTitle, for: .normal)
         actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
         
@@ -92,7 +92,7 @@ class Rapptr_AlertVC: UIViewController {
     }
     
     
-    func configureMessageLabel() {
+    private func configureMessageLabel() {
         messageLabel.text           = message ?? "Unable to complete request"
         messageLabel.numberOfLines  = 4
         
