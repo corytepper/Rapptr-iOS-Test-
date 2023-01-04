@@ -5,14 +5,17 @@ Thank you for this fun coding test.
 
 The MenuVC is built with Storyboards.
 <img src="https://user-images.githubusercontent.com/7978084/210638474-a66223d1-1f78-4cdd-a1d1-366bc5597e84.png" height="400" />
-![Image](https://user-images.githubusercontent.com/7978084/210638474-a66223d1-1f78-4cdd-a1d1-366bc5597e84.png)
+
 The LoginVC is built programmatically and the LoginClient uses URLSession.
-![Image](https://user-images.githubusercontent.com/7978084/210638484-37728579-21b5-4a4a-8806-e613b0c65fff.png)
+<img src="https://user-images.githubusercontent.com/7978084/210638484-37728579-21b5-4a4a-8806-e613b0c65fff.png" height="400" />
+
 The ChatVC is built programmatically with a SwiftUI custom cell using AsyncImage. The ChatClient uses the new Async/Await network call.
-![Image](https://user-images.githubusercontent.com/7978084/210638483-520496b3-586a-4611-9627-65aca6041294.png)
-![Image](https://user-images.githubusercontent.com/7978084/210638492-d671e0a7-feb9-40e3-b8f4-214bd459e371.png)
+<img src="https://user-images.githubusercontent.com/7978084/210638483-520496b3-586a-4611-9627-65aca6041294.png" height="400" />
+<img src="https://user-images.githubusercontent.com/7978084/210638492-d671e0a7-feb9-40e3-b8f4-214bd459e371.png" height="400" />
+
 The AnimationVC is built programmatically and has a fun CoreMotion bonus.
-![Image](https://user-images.githubusercontent.com/7978084/210638509-27962038-6cd3-4357-a9c9-2bbd31b8fdf5.png)
+img src="https://user-images.githubusercontent.com/7978084/210638509-27962038-6cd3-4357-a9c9-2bbd31b8fdf5.png" height="400" />
+
 I extracted the buttons and text fields into their own classes as a scaling example.
 
 I also added some custom alerts that are more on brand than the baked in Apple alerts.
