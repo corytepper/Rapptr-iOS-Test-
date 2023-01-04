@@ -117,14 +117,14 @@
 		E9414DB526C45CF300512A71 /* Rapptr iOS Test */ = {
 			isa = PBXGroup;
 			children = (
-				2F5058EA2964B12500995867 /* Extensions */,
-				2F5058E92964B0EE00995867 /* Alerts */,
-				2F988C1D294BE0AC0043ABBC /* Buttons_TextFields */,
 				E9414DB626C45CF300512A71 /* AppDelegate.swift */,
 				E9414DE926C468D700512A71 /* SceneDelegate.swift */,
-				E9414DD226C4617B00512A71 /* Views */,
 				E9414DCF26C45F9500512A71 /* Clients */,
 				E9414DCC26C45ECD00512A71 /* Models */,
+				2F5058EA2964B12500995867 /* Extensions */,
+				2F988C1D294BE0AC0043ABBC /* Buttons_TextFields */,
+				2F5058E92964B0EE00995867 /* Alerts */,
+				E9414DD226C4617B00512A71 /* Views */,
 				E9414DD826C4618900512A71 /* View Controllers */,
 				E9414DBF26C45CF400512A71 /* Assets.xcassets */,
 				E9414DC126C45CF400512A71 /* LaunchScreen.storyboard */,
@@ -198,6 +198,8 @@
 			dependencies = (
 			);
 			name = "Rapptr iOS Test";
+			packageProductDependencies = (
+			);
 			productName = "Rapptr iOS Test";
 			productReference = E9414DB326C45CF300512A71 /* Rapptr iOS Test.app */;
 			productType = "com.apple.product-type.application";
@@ -225,6 +227,8 @@
 				Base,
 			);
 			mainGroup = E9414DAA26C45CF300512A71;
+			packageReferences = (
+			);
 			productRefGroup = E9414DB426C45CF300512A71 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

@@ -13,7 +13,7 @@ struct ChatRowView: View {
     
     var body: some View {
         HStack(alignment: .top, spacing: 7) {
-            AsyncImage(url: message.avatarURL) { image in
+           AsyncImage(url: message.avatarURL) { image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
