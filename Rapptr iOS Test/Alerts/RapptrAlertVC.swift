@@ -7,8 +7,9 @@
 
 import UIKit
 
-class Rapptr_AlertVC: UIViewController {
 
+
+class Rapptr_AlertVC: UIViewController {
     let containerView = RapptrAlertContainerView()
     let titleLabel    = UILabel()
     let messageLabel  = UILabel()
@@ -17,15 +18,18 @@ class Rapptr_AlertVC: UIViewController {
     var alertTitle: String?
     var message: String?
     var buttonTitle: String?
+    var popToRootVC = Bool()
     
     let padding: CGFloat = 20
     
     
-    init(title: String, message: String?, buttonTitle: String) {
+    init(title: String, message: String?, buttonTitle: String, popToRootVC: Bool) {
         super.init(nibName: nil, bundle: nil)
         self.alertTitle    = title
         self.message       = message
         self.buttonTitle   = buttonTitle
+        self.popToRootVC   = popToRootVC
+        
     }
     
     
@@ -43,7 +47,10 @@ class Rapptr_AlertVC: UIViewController {
         configureTitleLabel()
         configureActionButton()
         configureMessageLabel()
-        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("alert dissappeared")
         
     }
     
@@ -100,7 +107,7 @@ class Rapptr_AlertVC: UIViewController {
         messageLabel.adjustsFontSizeToFitWidth         = true
         messageLabel.minimumScaleFactor                = 0.75
         messageLabel.lineBreakMode                     = .byWordWrapping
-
+        
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -113,6 +120,21 @@ class Rapptr_AlertVC: UIViewController {
     
     
     @objc func dismissVC() {
-        dismiss(animated: true)
+        if popToRootVC {
+            dismiss(animated: true) {
+                //Go to Menu View Controller
+                
+                
+            }
+            
+               
+            
+        } else {
+            self.dismiss(animated: true)
+        }
+        
     }
+    
 }
+        
+    

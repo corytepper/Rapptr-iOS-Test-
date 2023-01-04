@@ -37,11 +37,8 @@ class RapptrTextField: UITextField {
         self.textAlignment = .left
         
         self.setLeftPaddingPoints(24)
-        
-//        self.alpha = 0.6
-//        self.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.6)
         self.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-//        self.textColor = .black
+        self.textColor = UIColor(named: "Login_fonts")
     }
     
     
@@ -51,9 +48,6 @@ class RapptrTextField: UITextField {
     
     func set(backgroundColor: UIColor, placeholder: String) {
         self.backgroundColor = backgroundColor.withAlphaComponent(0.6)
-//        self.placeholder = "\(placeholder)"
-//        self.attributedPlaceholder = NSAttributedString(string: "yourPlaceholderText")
-        
         let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .regular), NSAttributedString.Key.foregroundColor : UIColor(named: "Rapptr_Gray_placeholder")]
         let attributedText = NSAttributedString(string: placeholder, attributes: attributes as [NSAttributedString.Key : Any])
         self.attributedPlaceholder = attributedText

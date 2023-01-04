@@ -23,6 +23,7 @@
  *
  * 7) When login is successful, tapping 'OK' in the UIAlertController should bring you back to the main menu.
  **/
+
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -47,9 +48,6 @@ class LoginViewController: UIViewController {
         setupNavBar(title: title ?? "")
         configureUIElements()
         layoutUIElements()
-        
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,12 +62,14 @@ class LoginViewController: UIViewController {
             return }
         
         client.login(email: email, password: password, completion: { responseTime in
-            self.presentRapptrAlertOnMainThread(title: "Login Complete", message: responseTime , buttonTitle: "OK")
+            self.presentRapptrAlert(title: "Login Complete", message: responseTime , buttonTitle: "OK", popToRootVC: true)
+            
             
         }, error: { error in
-            self.presentRapptrAlertOnMainThread(title: "Error", message: "\(error!)", buttonTitle: "OK")
+            self.presentRapptrAlert(title: "Error", message: "\(error!)", buttonTitle: "Try Again!", popToRootVC: false)
             
         })
+        
         
     }
     
@@ -94,6 +94,7 @@ class LoginViewController: UIViewController {
    
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.set(backgroundColor: .white, placeholder: "Email")
+        
 
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.set(backgroundColor: .white, placeholder: "Password")
@@ -107,12 +108,10 @@ class LoginViewController: UIViewController {
     
     
     func layoutUIElements() {
+        
+        backgroundImage.pinToEdges(of: view)
+
         NSLayoutConstraint.activate([
-            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
-            backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 64),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
            
@@ -128,27 +127,5 @@ class LoginViewController: UIViewController {
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
         ])
-    }
-}
-
-// MARK: - Extensions
-extension LoginViewController : UITextFieldDelegate {
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return true
-    }
-    
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == self.emailTextField {
-            textField.resignFirstResponder()
-            return false
-        }
-        
-        if textField == self.passwordTextField {
-            textField.resignFirstResponder()
-            return false
-        }
-        
-        return true
     }
 }

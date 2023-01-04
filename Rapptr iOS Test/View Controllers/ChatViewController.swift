@@ -30,21 +30,20 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         title = "Chat"
         setupNavBar(title: title ?? "")
-        configureTable()
+        configureTableView()
         getMessages()
     }
     
     
     // MARK: - Private
-    private func configureTable() {
+    private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        
         view.addSubview(tableView)
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        tableView.pinToEdges(of: view)
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.separatorColor = UIColor.clear
         tableView.backgroundColor = UIColor(named: "UIView_BG")
